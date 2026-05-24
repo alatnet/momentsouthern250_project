@@ -1,0 +1,15 @@
+.vscode/
+.cache/
+ufbx/
+raylib/
+src/glm/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+Makefile
+.bin/Textures/*
+.bin/MS250Project
+.bin/MS250Project-0.0.1
+.bin/Eri.fbx
+.bin/primm_rod.fbx
+CMakeFiles

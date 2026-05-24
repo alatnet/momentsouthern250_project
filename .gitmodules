@@ -1,0 +1,9 @@
+[submodule "ufbx"]
+	path = ufbx
+	url = git@github.com:ufbx/ufbx.git
+[submodule "raylib"]
+	path = raylib
+	url = git@github.com:raysan5/raylib.git
+[submodule "src/glm"]
+	path = src/glm
+	url = git@github.com:g-truc/glm.git
