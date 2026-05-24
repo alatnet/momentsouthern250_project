@@ -13,8 +13,8 @@ i should note that my timezone is currently JST.
 
 May 10  
 MomentSouthern250 - 5:48 AM  
-hey great, i don't care much about the timezone, right now i am basically using this https://github.com/ufbx/ufbx/blob/master/examples/viewer/viewer.c to render my model, i need an "animation stack" where i tell the model which animation it should play (no animation blending, you can take a look at update_animation function, also probably at the ufxb library for how the model is set up), and the other thing is i need to extract the vertices, normals and trias into a flat array( and the bones and boneweights) so i am able to run the animations on that data (the trias in the fbx are split into materials, i think). I am using the extracted for collision detection. This is the short overview if you get what i'm trying to do and if you are still interested, i think you can take a look at the viewer.c and think about how long/how much you think that would be. Thanks.
-![Images/2ti9bj9ib60h1.png]()
+hey great, i don't care much about the timezone, right now i am basically using this https://github.com/ufbx/ufbx/blob/master/examples/viewer/viewer.c to render my model, i need an "animation stack" where i tell the model which animation it should play (no animation blending, you can take a look at update_animation function, also probably at the ufxb library for how the model is set up), and the other thing is i need to extract the vertices, normals and trias into a flat array( and the bones and boneweights) so i am able to run the animations on that data (the trias in the fbx are split into materials, i think). I am using the extracted for collision detection. This is the short overview if you get what i'm trying to do and if you are still interested, i think you can take a look at the viewer.c and think about how long/how much you think that would be. Thanks.  
+![](Images/2ti9bj9ib60h1.png)
 
 alatnet - 12:06 PM  
 huh, seems similar to what i was doing in unity with the descent 1 and 2 polymodels.  
@@ -83,8 +83,8 @@ K. I'll run that one through the testing too.
 May 22  
 alatnet - 6:01 PM  
 ok, update, i've been working with trying to validate the data in the flat arrays and was, more or less, banging my head against the wall with opengl. i have been able to get the flat array of positions, normals, and uv's (though i havent tested that) working. been working on validating the bone data but that's taking some time...  
-![Images/whvza4azln2h1.png]()  
-![Images/izla1yh6mn2h1.png]()  
+![](Images/whvza4azln2h1.png)  
+![](Images/izla1yh6mn2h1.png)  
 first image is without bones, second is with bones  
 should be two cubes with one smaller and floating above the other  
 mostly just figuring out how to work with opengl in using the data. which would most likely be useful for you to understand how to use it with what program you are going to integrate it with  
@@ -148,23 +148,23 @@ this is the vertex shader that im using:
         fNorm = normalize(world_normal);
         fUV = vUV;
     }  
-![Images/d9okdoe4av2h1.png]()  
+![](Images/d9okdoe4av2h1.png)  
 dont know why it's limiting the message...  
 anyway  
 this is how im updating the bones into the flat array:  
-![Images/kbf1q6maav2h1.png]()  
+![](Images/kbf1q6maav2h1.png)  
 and this is how im updating the ssbo in the shader with the bone meshes in the flat array:  
-![Images/8lr31lteav2h1.png]()  
+![](Images/8lr31lteav2h1.png)  
 for the drawing that im doing, im enabling the shader, updating the model view perspective matrix (mvp uniform), then for each mesh, updating the bone buffer, color (which can probable be material in the future), and if the model is skinned, then for each node instance im updating the geom2world matrix and norm2world matrix, then finally, for each part, im binding the VAO buffer (this has the vertexes, normals, uvs, and indices in it) and drawing it with the glDrawElements function to draw each part with their indicies.  
 with the a test model on hand, it gives me this:  
-![Images/6d2i0mj9bv2h1.png]()  
+![](Images/6d2i0mj9bv2h1.png)  
 disabling bones gives me this:  
-![Images/xxxalrqebv2h1.png]()  
+![](Images/xxxalrqebv2h1.png)  
 which is what it should look like  
 ah... that probably wasnt a good pic of the vertex shader...  
-![Images/httr7zenbv2h1.png]()  
+![](Images/httr7zenbv2h1.png)  
 wait... what?  
-![Images/bg9ky6c5cv2h1.png]()  
+![](Images/bg9ky6c5cv2h1.png)  
 ok.... so... it's rendering the test cubes correctly with the bones disabled...  
 hmmm, looking at the data via renderdoc with the bone matricies. the data looks to be correct by all accounts.  
 
